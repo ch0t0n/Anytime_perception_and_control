@@ -1,0 +1,16 @@
+
+New Experiment:
+
+ ep = 10
+Iteration, Num_Ver(Xc), Volume(Xc), Runtime
+1, 4, 0.0, 0.027658939361572266
+
+Runtime:  122.46179580688477
+
+New Experiment:
+
+ ep = 0.200000000000000
+Iteration, Num_Ver(Xc), Volume(Xc), Runtime
+1, 4, 0.0, 0.02921009063720703
+
+Runtime:  128.10897827148438

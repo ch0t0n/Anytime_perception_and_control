@@ -1,0 +1,7 @@
+New experiment:,,,
+Iteration, Num_Ver(Uc), Num_Ver(Xc), Runtime
+1,16,1,1012.392044
+2,256,16,1013.455868
+3,65536,4096,1173.741102
+,,,
+Runtime:  16519.222021102905,,,

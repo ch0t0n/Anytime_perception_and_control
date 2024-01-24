@@ -1,0 +1,59 @@
+# We are doing anytime computation of state-space modeling of a quadcopter with 3 degrees of freedom
+
+# We first describe the state and the input
+# X = [theta phi psi theta' phi' psi']
+# U = [U1 U2 U3 U4]
+
+# We have the initial input
+PX0 = Polyhedron(vertices = [(0,30,45,0.2,0.2,0.3)], backend='ppl', base_ring=QQ)
+PU0 = Polyhedron(vertices=[(3,4,2,3),(2,2,1,1)], backend='ppl', base_ring=QQ)
+
+X0 = np.array(PX0.vertices_list())
+U0 = np.array(PU0.vertices_list())
+
+# We describe some parameters to compute the matrices A and B
+# distance from center to each motor
+d = 0.2
+# constant c
+c = 5
+# Torques along x,y and z axis
+lx, ly, lz = 3, 3, 3
+
+# We write the matrices as follows,
+A = np.array([[0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]])*0.001
+
+B = np.array([[0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,d/lx,0,-d/lx],
+            [d/ly,0,-d/ly,0],
+            [-c/lz,c/lz,-c/lz,c/lz]])*0.001
+
+# We have the matrix K of 4x6 dimension
+# K = np.array([[0, 0, 0, -1, 0, 0],
+#            [0, -1, 0, 0, -5, 0],
+#            [0, -1, 0, 0, 0, 0],
+#            [0, 0, 0, -3, 0, 0]])
+
+K = np.array([[ 4.46409843e-16,  7.07106781e-01, -5.00000000e-01,  2.43835809e-15,   3.33265686e+00, -6.32455532e-01],
+ [ 7.07106781e-01, -1.43004290e-16,  5.00000000e-01,  3.33265686e+00,   1.26459062e-15,  6.32455532e-01],
+ [-6.07349885e-16, -7.07106781e-01, -5.00000000e-01,  1.00266266e-16,  -3.33265686e+00, -6.32455532e-01],
+ [-7.07106781e-01,  5.53252972e-17,  5.00000000e-01, -3.33265686e+00,  -1.07350120e-15,  6.32455532e-01]])
+
+# Finally, we have the dimension and epsilon
+n, ep = 6, 0.2
+u = 4
+
+# Parameters for alg3
+T0 = [2,9]
+W = Polyhedron(ieqs=[(-10,0,1,11,11,0,0),(40,0,-1,11,11,2,2),(-20,3,-1,11,11,3,3),(20,-1,1,11,11,3,3)], backend='ppl', base_ring=QQ) # Unsafe state
+c = 5
+C = A*2
+D = B*0.5
+# E = Polyhedron(vertices=[[2,1,1,1,1,1]], backend='ppl', base_ring=QQ)
+E = [[2],[1],[1],[1],[1],[1]]

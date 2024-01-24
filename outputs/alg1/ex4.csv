@@ -1,0 +1,12 @@
+
+New experiment:
+Iteration, Num_Cons(Xout), Num_Ver(Xout), Volume(Xout), Runtime
+1, 13, 2, '0.000000e+00', 5879.848957061768
+
+Runtime:  5880.6312084198
+
+New experiment:
+Iteration, Num_Cons(Xout), Num_Ver(Xout), Volume(Xout), Runtime
+1, 13, 2, '0.000000e+00', 7103.042125701904
+
+Runtime:  7103.737115859985

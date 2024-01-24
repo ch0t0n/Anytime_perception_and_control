@@ -1,0 +1,61 @@
+# We are doing anytime computation of a balance system. A balance system is a mechanical system in which
+# the center of mass is balanced above a pivot point. 
+
+# We first describe the state and the input
+# X = [p p' theta theta'] where p = position, p' = velocity, theta = angle w.r.t base and object, theta' = angular rate
+# U = F, the force applied on the object to keep the balance
+
+# Hence, we have the initial input
+X0 = Polyhedron(vertices = [(4,2,30,0.2), (2,4,0.2,10), (1,1,2,10), (10,4,5,0.1)], backend='ppl', base_ring=QQ)
+U0 = Polyhedron(eqns=[[3,1]], backend='ppl', base_ring=QQ)
+
+
+X0 = X0.vertices_list()
+U0 = U0.vertices_list()
+
+# Next, we define some parameters to compute A and B matrices
+M = 15 # Mass of the base (kg)
+m = 20 # Mass of the object (kg)
+J = 4 # Moment of inertia of the object (kgm^2)
+l = 0.8 # Distance from the base to the center of mass of the object
+c,y = 0.7, 0.2 # co-efficient of viscous friction
+g = 9.8 # acceleration due to gravity
+Mt = M+m
+Jt = J + m*(l**2)
+miu = (Mt*Jt) - ((m**2)*(l**2))
+a1 = ((m**2)*(l**2)*g)/(miu)
+a2 = -((c*Jt)/miu)
+a3 = -((y*Jt*l*m)/miu)
+a4 = (Mt*m*g*l)/miu
+a5 = -((c*l*m)/miu)
+a6 = -((y*Mt)/miu)
+u1 = (Jt/miu)
+u2 = (l*m)/miu
+
+# Hence we have the matrix A and B
+A = Matrix([[0, 0, 1, 0],
+            [0, 0, 0, 1],
+            [0, a1, a2, a3],
+            [0, a4, a5, a6]])
+
+B = Matrix([[0],
+            [0],
+            [u1],
+            [u2]])
+
+# For computing U = -KX, we have,
+K = Matrix([ -1, 727.30833078, -9.63981385, 182.72824732])
+# K = Matrix([[0, 1, 0, 1]])
+
+# The dimension and epsilon
+n, ep = 4, 0.2
+u = 1
+
+# Parameters for alg3
+T0 = [2,9]
+W = Polyhedron(ieqs=[(-10,0,1,11,11),(-40,0,-1,11,11),(-20,3,-1,11,11),(-20,-1,1,11,11)], backend='ppl', base_ring=QQ) # Unsafe state
+c = 5
+C = A*2
+D = B*2
+# E = Polyhedron(vertices=[[2,1,1,1]], backend='ppl', base_ring=QQ)
+E = [[2],[1],[1],[1]]

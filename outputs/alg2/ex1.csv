@@ -1,0 +1,12 @@
+New Experiment:,,,,
+Iteration, Num_Cons(Xout), Num_Ver(Xout), Volume(Xout), Runtime
+1,4,4,1.80E+01,1816.403151
+2,6,6,2.26E+02,1897.866964
+3,8,8,2.82E+02,1959.817886
+4,8,8,5.10E+02,2037.587881
+5,8,8,5.86E+02,2099.360943
+6,8,8,8.35E+02,2163.933277
+7,8,8,9.32E+02,2226.033211
+ValueError =  *Error: Numerical inconsistency is found.  Use the GMP exact arithmetic.,,,,
+,,,,
+Total runtime = 2242.0061 ms for 50 iterations,,,,

@@ -1,0 +1,16 @@
+
+New Experiment:
+Iteration, Num_Cons(Xout), Num_Ver(Xout), Volume(Xout), Runtime
+1, 5, 2, '0.000000e+00', 2.820056915283203
+2, 19, 16, '0.000000e+00', 3.089679002761841
+3, 512, 129, '2.764677e+08', 13.276090145111084
+
+Total runtime = 28957.7358 ms for 6 iterations
+
+New Experiment:
+Iteration, Num_Cons(Xout), Num_Ver(Xout), Volume(Xout), Runtime
+1, 5, 2, '0.000000e+00', 1.9790430068969727
+2, 19, 16, '0.000000e+00', 2.234138011932373
+3, 512, 129, '2.764677e+08', 12.99554705619812
+
+Total runtime = 97098.109 ms for 6 iterations

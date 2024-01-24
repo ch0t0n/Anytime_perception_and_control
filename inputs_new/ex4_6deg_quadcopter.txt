@@ -1,0 +1,61 @@
+# We are doing anytime computation of state-space modeling of a quadcopter with 6 degrees of freedom
+
+# We first describe the state and the input, the state is in 12 dimensions and the input is in 4 dimensions
+# X = [x y z theta phi psi x' y' z' theta' phi' psi']
+# U = [U1 U2 U3 U4]
+
+# We have the initial state and the input
+PX0 = Polyhedron(vertices = [(1,1,1,0,30,45,0.2,0.2,0.3,3,4,5)])
+PU0 = Polyhedron(vertices=[(3,4,2,3),(2,2,1,1)])
+
+X0 = np.array(PX0.vertices_list())
+U0 = np.array(PU0.vertices_list())
+
+# We describe some parameters to compute the matrices A and B. A is 12x12 square matrix and B is 12x4 matrix
+g = 9.8 # ms^-2
+m = 2 # kilograms
+lx = 4 # meters
+ly = 4 # meters
+lz = 4 # meters
+
+A = np.array([[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, -g, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, g, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+
+B = np.array([[0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [-1/m,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,1/lx,0,0],
+            [0,0,1/ly,0],
+            [0,0,0,1/lz]])
+
+# Finally, we describe K which is a 4x12 matrix
+K = np.array([[0, 0, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, -1, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, -1, 0, 0, 0, 1, 0, 0, 0, 0, 0, -4],
+            [-1, 0, 0, 0, 0, 0, 0, -g, 0, 0, 0, 0]])
+
+# We have the dimensions and epsilon,
+n, ep = 12, 0.1
+u = 4
+T0 = [2,9]
+c = 5
+C = A*2
+D = B*0.5
+# E = Polyhedron(vertices=[[2,1,1,1,1,1,-2,-2,-2,-2,-3,-3]], backend='ppl', base_ring=QQ)
+E = [[2],[1],[1],[1],[1],[1],[-2],[-2],[-2],[-2],[-3],[-3]]

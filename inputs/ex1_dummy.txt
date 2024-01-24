@@ -1,0 +1,25 @@
+# This is the input for anytime perception of a made-up example
+
+# We will describe a simple 2D example. First we define the initial state and the initial input
+# X = [x y] is a state in 2D
+# U = [u] is an input in 1D
+X0 = Polyhedron(ieqs=[(-1,0,1),(4,0,-1),(-2,3,-1),(2,-1,1)], backend='ppl', base_ring=QQ)
+U0 = Polyhedron(eqns=[(-3,1)], backend='ppl', base_ring=QQ)
+
+# Since we have X in 2D and U in 1D, A will be a 2x2 matrix, B will be a 2x1 matrix, and K will be a 1x2 matrix
+A = Matrix([[1,2],[3,4]])
+B = Matrix([[0],[1]])
+# K = Matrix([8, 11])
+K = Matrix([-3,-5])
+
+# The dimension and epsilon for the box
+n, ep = 2, 0.2
+u = 1
+
+# Parameters for alg3
+T0 = [2,9]
+W = Polyhedron(ieqs=[(-10,0,1),(40,0,-1),(-20,3,-1),(20,-1,1)], backend='ppl', base_ring=QQ) # Unsafe state
+c = 5
+C = A*0.5
+D = B*2
+E = Polyhedron(vertices=[[2,1]], backend='ppl', base_ring=QQ)

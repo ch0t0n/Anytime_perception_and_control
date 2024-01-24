@@ -1,0 +1,8 @@
+
+New Experiment:
+i =  0
+Xc =  A 1-dimensional polyhedron in RDF^12 defined as the convex hull of 2 vertices
+
+New Experiment:
+i =  0
+Xc =  A 1-dimensional polyhedron in RDF^12 defined as the convex hull of 2 vertices

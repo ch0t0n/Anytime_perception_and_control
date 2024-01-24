@@ -1,0 +1,42 @@
+
+New Experiment:
+i =  0
+Xc =  A 1-dimensional polyhedron in RDF^6 defined as the convex hull of 2 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 64 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 8 vertices
+i =  1
+Xc =  A 4-dimensional polyhedron in RDF^6 defined as the convex hull of 16 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 224 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 16 vertices
+i =  2
+ValueError =  *Error: Numerical inconsistency is found.  Use the GMP exact arithmetic.
+i =  3
+ValueError =  *Error: Numerical inconsistency is found.  Use the GMP exact arithmetic.
+
+Total runtime = 3451.926 ms for 4 iterations
+
+New Experiment:
+i =  0
+Xc =  A 1-dimensional polyhedron in RDF^6 defined as the convex hull of 2 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 64 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 8 vertices
+i =  1
+Xc =  A 4-dimensional polyhedron in RDF^6 defined as the convex hull of 16 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 224 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 16 vertices
+
+Total runtime = 3110.774 ms for 2 iterations
+
+New Experiment:
+i =  0
+Xc =  A 1-dimensional polyhedron in RDF^6 defined as the convex hull of 2 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 64 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 8 vertices
+i =  1
+Xc =  A 4-dimensional polyhedron in RDF^6 defined as the convex hull of 16 vertices
+Xp =  A 6-dimensional polyhedron in RDF^6 defined as the convex hull of 224 vertices
+Uc =  A 3-dimensional polyhedron in RDF^4 defined as the convex hull of 16 vertices
+i =  2
+ValueError =  *Error: Numerical inconsistency is found.  Use the GMP exact arithmetic.
+
+Total runtime = 2897.6581 ms for 3 iterations
